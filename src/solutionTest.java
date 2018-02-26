@@ -34,33 +34,23 @@ public class solutionTest {
 		return String.valueOf(res);
 	}
 
-	public String frequencySortOther(String s) {
-		if(s.length() == 0) return "";
-		char[] ch = s.toCharArray();
-		int n = ch.length;
-		char[] res = new char[n];
-		int len = 256;
-		int[] bucket = new int[len];
+	public String longestPalindrome(String s) {
+		int n = s.length();
+		boolean[][] dp = new boolean[n][n];
+		int start = 0, max = 1;
 
-		for(int i = 0; i < n; i++){
-			bucket[ch[i]]++;
-		}
-		int i = 0;
-		while(i < n){
-			int index = 0;
-			int max = 0;
-			for(int j = 0; j < len; j++){
-				if(bucket[j] > max){
-					max = bucket[j];
-					index = j;
+		for(int i = n - 1; i >= 0; i--) {
+			for(int j = i; j < n; j++) {
+				if((s.charAt(i) == s.charAt(j)) && (i+1>j-1 || dp[i+1][j-1])) {
+					dp[i][j] = true;
+					if(j-i+1>max) {
+						max = j-i+1;
+						start = i;
+					}
 				}
 			}
-			while(max > 0){
-				res[i++] = (char)index;
-				max--;
-			}
-			bucket[index] = 0;
 		}
-		return String.valueOf(res);
+
+		return s.substring(start,start+max);
 	}
 }

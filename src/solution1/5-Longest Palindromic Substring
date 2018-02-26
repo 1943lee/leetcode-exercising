@@ -1,0 +1,23 @@
+//最长回文子串
+//动态规划思想，若要想s[i][j]为回文，则s[i+1][j-1]必须为回文
+class Solution {
+    public String longestPalindrome(String s) {
+        int n = s.length();
+        boolean[][] dp = new boolean[n][n];
+        int start = 0, max = 1;
+
+        for(int i = n - 1; i >= 0; i--) {
+            for(int j = i; j < n; j++) {
+                if((s.charAt(i) == s.charAt(j)) && (i+1>j-1 || dp[i+1][j-1])) {
+                    dp[i][j] = true;
+                    if(j-i+1>max) {
+                        max = j-i+1;
+                        start = i;
+                    }
+                }
+            }
+        }
+
+        return s.substring(start,start+max);
+    }
+}

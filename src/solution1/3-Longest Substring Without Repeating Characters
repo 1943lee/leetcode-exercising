@@ -1,0 +1,20 @@
+//1st ac，使用HashSet保存连续的char，如果发现重复，则开始清空此set（从头开始remove，由于循环因子未增加，会将此重复数据之前数据全部清除，直到清除该重复字符）；
+//同时保存最大不连续max，与当前set的size取max，得到最大
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int i = 0, j = 0, max = 0;
+		Set<Character> set = new HashSet<Character>();
+
+		while(j < s.length()) {
+			if(set.add(s.charAt(j))) {
+				j++;
+				max = Math.max(max, set.size());
+			}
+			else {
+				set.remove(s.charAt(i++));
+			}
+		}
+
+		return max;
+    }
+}
