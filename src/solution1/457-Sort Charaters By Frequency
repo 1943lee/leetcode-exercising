@@ -1,0 +1,34 @@
+//no sort,每次循环，取最大frequency，然后置为0
+public class solutionTest {
+	public String frequencySort(String s) {
+		if(s.isEmpty()) return "";
+
+		int n = s.length();
+		int[] frequency = new int[256];
+		for(int i=0;i<n;i++) {
+			frequency[s.charAt(i)]++;
+		}
+
+		char[] res = new char[n];
+
+		int i = 0;
+		while(i<n) {
+			int max = 0;
+			int index = 0;
+
+			for(int j=0;j<256;j++) {
+				if(frequency[j]>max) {
+					max=frequency[j];
+					index=j;
+				}
+			}
+			while(max>0) {
+				res[i++]=(char)index;
+				max--;
+			}
+			frequency[index] = 0;
+		}
+
+		return String.valueOf(res);
+	}
+}
