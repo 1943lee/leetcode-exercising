@@ -104,4 +104,14 @@ public class solutionTest {
 		}
 		System.out.println(outStr.toString());
 	}
+
+	public int reverse(int x) {
+		long val = 0;
+		do {
+			val = 10*val+x%10;
+			x/=10;
+		}while (x != 0);
+
+		return (val > Integer.MAX_VALUE || val < Integer.MIN_VALUE) ? 0 : (int) val;
+	}
 }

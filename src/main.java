@@ -15,7 +15,7 @@ public class main {
 
 		long start = new Date().getTime();
 
-		String res = new solutionTest().convertOther(testStr,3);
+		int res = new solutionTest().reverse(1534236469);
 
 		long end = new Date().getTime();
 
