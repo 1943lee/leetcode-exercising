@@ -11,11 +11,11 @@ public class main {
 			test.append((char)(33 + (126 - 33) * random.nextDouble()));
 		}*/
 
-		String testStr = "abcbadefg";//test.toString();
+		String testStr = "PAYPALISHIRING";//test.toString();
 
 		long start = new Date().getTime();
 
-		String res = new solutionTest().longestPalindrome(testStr);
+		String res = new solutionTest().convertOther(testStr,3);
 
 		long end = new Date().getTime();
 

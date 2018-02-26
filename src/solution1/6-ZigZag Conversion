@@ -1,60 +1,16 @@
-/**
- * Created by lcy on 2018/2/26.
- */
-public class solutionTest {
-	public String frequencySort(String s) {
-		if(s.isEmpty()) return "";
+/*n=numRows
+Δ=2n-2    1                           2n-1                         4n-3
+Δ=        2                     2n-2  2n                    4n-4   4n-2
+Δ=        3               2n-3        2n+1              4n-5       .
+Δ=        .           .               .               .            .
+Δ=        .       n+2                 .           3n               .
+Δ=        n-1 n+1                     3n-3    3n-1                 5n-5
+Δ=2n-2    n                           3n-2                         5n-4
+*/
+//题意如上图
 
-		int n = s.length();
-		int[] frequency = new int[256];
-		for(int i=0;i<n;i++) {
-			frequency[s.charAt(i)]++;
-		}
-
-		char[] res = new char[n];
-
-		int i = 0;
-		while(i<n) {
-			int max = 0;
-			int index = 0;
-
-			for(int j=0;j<256;j++) {
-				if(frequency[j]>max) {
-					max=frequency[j];
-					index=j;
-				}
-			}
-			while(max>0) {
-				res[i++]=(char)index;
-				max--;
-			}
-			frequency[index] = 0;
-		}
-
-		return String.valueOf(res);
-	}
-
-	public String longestPalindrome(String s) {
-		int n = s.length();
-		boolean[][] dp = new boolean[n][n];
-		int start = 0, max = 1;
-
-		for(int i = n - 1; i >= 0; i--) {
-			for(int j = i; j < n; j++) {
-				if((s.charAt(i) == s.charAt(j)) && (i+1>j-1 || dp[i+1][j-1])) {
-					dp[i][j] = true;
-					if(j-i+1>max) {
-						max = j-i+1;
-						start = i;
-					}
-				}
-			}
-		}
-
-		return s.substring(start,start+max);
-	}
-
-	public String convert(String s, int numRows) {
+//根据原始数据，按照波浪顺序，纵向求解
+public String convert(String s, int numRows) {
 		char[] c = s.toCharArray();
 		int len = c.length;
 		StringBuffer[] sb = new StringBuffer[numRows];
@@ -72,6 +28,7 @@ public class solutionTest {
 		return sb[0].toString();
 	}
 
+// 横向画图求解
 	//https://segmentfault.com/a/1190000005751185
 	public String convertOther(String s, int numRows) {
 		if (numRows == 1)
@@ -104,4 +61,3 @@ public class solutionTest {
 		}
 		System.out.println(outStr.toString());
 	}
-}
