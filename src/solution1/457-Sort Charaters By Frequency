@@ -1,5 +1,5 @@
 //no sort,每次循环，取最大frequency，然后置为0
-public class solutionTest {
+public class com.leetCodeExercise.solutionTest {
 	public String frequencySort(String s) {
 		if(s.isEmpty()) return "";
 
